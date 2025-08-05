@@ -2,7 +2,8 @@ using System.Linq.Dynamic.Core;
 using MemberRequestAPI.Data.Repositories;
 using MemberRequestAPI.Models;
 using MemberRequestAPI.Models.Dashboard;
-
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 namespace MemberRequestAPI.Services
 {
     public class DashboardService
@@ -38,13 +39,16 @@ namespace MemberRequestAPI.Services
                         DaysAwaitingAck = (int)(DateTime.UtcNow - r.CreatedDate).TotalDays,
                         RequestFileName = r.RequestFileName
                     })
-                    .OrderBy(sortOrder)
-                    .Skip((pageNumber ?? 1) * (pageSize ?? 10))
-                    .Take(pageSize ?? 10)
                     .ToList();
+                
+                dashboardItems = dashboardItems
+    .OrderByDescending(x => x.DaysAwaitingAck) // or .OrderBy(x => x.DaysAwaitingAck)
+    .Skip((pageNumber ?? 1) * (pageSize ?? 10))
+    .Take(pageSize ?? 10)
+    .ToList();
 
                 // Filter requests that have been waiting more than a week
-                var delayedRequests = requests
+                var delayedRequests = dashboardItems
                     .Where(r => r.DaysAwaitingAck > 7)
                     .ToList();
 

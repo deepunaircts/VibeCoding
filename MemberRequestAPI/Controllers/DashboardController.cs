@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using MemberRequestAPI.Models.Dashboard;
 using MemberRequestAPI.Services;
+using MemberRequestAPI.Data.Repositories;
+using MemberRequestAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MemberRequestAPI.Controllers
 {
@@ -11,11 +14,13 @@ namespace MemberRequestAPI.Controllers
     {
         private readonly DashboardService _dashboardService;
         private readonly ILogger<DashboardController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public DashboardController(DashboardService dashboardService, ILogger<DashboardController> logger)
+        public DashboardController(DashboardService dashboardService, ILogger<DashboardController> logger, ApplicationDbContext context)
         {
             _dashboardService = dashboardService;
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet("delayed-requests")]

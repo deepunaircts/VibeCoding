@@ -23,7 +23,7 @@ namespace MemberRequestAPI.Services
             {
                 // Parse the CSV content
                 var lines = content.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                
+                var request = new MemberRequest();
                 // Skip header line
                 var headers = lines[0].Split(',');
                 var dataLines = lines.Skip(1).ToList();
@@ -40,7 +40,7 @@ namespace MemberRequestAPI.Services
                     var mailingDate = DateTime.ParseExact(fields[2].Trim('"'), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                     // Find the corresponding request
-                    var request = await _repository.GetMemberRequestByIdAsync(memberId);
+                    request = await _repository.GetMemberRequestByIdAsync(int.Parse(memberId));
 
                     if (request != null)
                     {

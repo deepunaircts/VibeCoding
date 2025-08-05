@@ -2,6 +2,7 @@ using System.Linq.Dynamic.Core;
 using MemberRequestAPI.Data;
 using MemberRequestAPI.Models;
 using MemberRequestAPI.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace MemberRequestAPI.Data.Repositories
 {

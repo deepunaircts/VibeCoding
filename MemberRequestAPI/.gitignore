@@ -1,0 +1,49 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Logs
+*.log
+
+# Database
+*.mdf
+*.ldf
+
+# Dotnet tools
+/.tools/
+
+# Publish outputs
+publish/
+
+# Environment and secrets
+.env
+secrets.json
+
+# Other
+*.db
+*.DS_Store
+Thumbs.db
+
+# Node/npm (if using frontend)
+node_modules/
+
+# Test results
+TestResults/
+
+# Launch profiles
+Properties/launchSettings.json
